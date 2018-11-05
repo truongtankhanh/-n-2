@@ -1,0 +1,45 @@
+{
+  "project_info": {
+    "project_number": "644485540046",
+    "firebase_url": "https://cuisines-dd5cf.firebaseio.com",
+    "project_id": "cuisines-dd5cf",
+    "storage_bucket": "cuisines-dd5cf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:644485540046:android:56fd9f89e7b3e399",
+        "android_client_info": {
+          "package_name": "com.gmail.khanhit100896.foody"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "644485540046-pg2cotuu1fj93f3bbfub9aefbtqu1pqg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxB2LUxX9y8mw-eUYzcLmTaixYfitRLTU"
+        },
+        {
+          "current_key": "AIzaSyDxB2LUxX9y8mw-eUYzcLmTaixYfitRLTU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

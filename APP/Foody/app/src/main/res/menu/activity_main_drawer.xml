@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_city"
+            android:icon="@drawable/ic_menu"
+            android:iconTint="@color/black"
+            android:title="Thành phố"
+            app:showAsAction="always" />
+        <item
+            android:id="@+id/nav_restaurant"
+            android:icon="@drawable/ic_restaurant"
+            android:iconTint="@color/black"
+            android:title="Nhà hàng" />
+        <item
+            android:id="@+id/nav_food"
+            android:icon="@drawable/ic_food"
+            android:iconTint="@color/black"
+            android:title="Danh sách món ăn" />
+    </group>
+
+    <item android:title="Tùy chọn">
+        <menu>
+            <item
+                android:id="@+id/nav_signin"
+                android:icon="@drawable/ic_login_icon"
+                android:title="Đăng nhập" />
+            <item
+                android:id="@+id/nav_signout"
+                android:icon="@drawable/ic_logout_icon"
+                android:title="Đăng xuất" />
+        </menu>
+    </item>
+
+</menu>
