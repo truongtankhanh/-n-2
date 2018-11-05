@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>Admin</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <noscript>
+        <link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+
+    <style>
+        body {
+            font-family: Serif;
+        }
+    </style>
+</head>
+
+<body class="is-preload">
+    <div id="wrapper">
+        <div id="bg"></div>
+        <div id="overlay"></div>
+        <div id="main">
+
+            <!-- Header -->
+            <header id="header">
+                <h1 style="color: rgb(68, 65, 65)">Vietnamese Cuisine</h1>
+                <p style="color: rgb(1, 9, 250); font-style: italic">Login with</p>
+                <p style="color: rgb(1, 9, 250); font-style: italic">Twitter &nbsp;&bull;&nbsp; Facebook &nbsp;&bull;&nbsp; Google &nbsp;&bull;&nbsp; Email </p>
+                <nav>
+                    <ul>
+                        <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+
+                        <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+
+                        <li><a href="#" class="icon fa-google"><span class="label">Google</span></a></li>
+
+                        <li><a href="login.php" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
+                    </ul>
+                </nav>
+            </header>
+
+            <!-- Footer -->
+            <footer id="footer">
+
+            </footer>
+
+        </div>
+    </div>
+    <script>
+        window.onload = function() {
+            document.body.classList.remove('is-preload');
+        }
+        window.ontouchmove = function() {
+            return false;
+        }
+        window.onorientationchange = function() {
+            document.body.scrollTop = 0;
+        }
+    </script>
+</body>
+
+</html>

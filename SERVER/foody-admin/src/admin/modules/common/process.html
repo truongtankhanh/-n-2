@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+    <script src="assets/js/scriptCityInfo.js"></script>
+
+    <style>
+        #tbCity {
+            height: 200px !important;
+            overflow-y: scroll;
+            color: red;
+        }
+    </style>
+
+    <title>Home</title>
+
+</head>
+
+<body background="images/bg_1.jpg" style="font-size: 30px;">
+    <!-- Start Navigation -->
+    <nav class="navbar navbar-expand-md bg-secondary navbar-dark" style="color: brown">
+        <div class="container">
+            <!-- Brand/logo -->
+            <a class="navbar-brand" href="#" style="pointer-events: none;">
+                <img src="images/food_barnstar_hires.png" alt="logo" style="width:40px;font-weight: bold">
+            </a>
+
+            <!-- Brand -->
+            <a class="navbar-brand" href="index.php" style="font-size: 30px;">Vietnamese Cuisine</a>
+
+            <!-- Toggler/collapsibe Button -->
+            <button class="navbar-toggler navbar-right" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Start navbar links -->
+            <div class="collapse navbar-collapse" id="collapsibleNavbar" style="font-size: 15px">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#" style="pointer-events: none;">
+                            <img src="images/user-icon.png">
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <?php
+                        echo '<a class="nav-link" href="#" style="pointer-events: none;">' . $name . '</a>';
+                        ?>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                            <span>&nbsp;</span>
+                        </a>
+
+                        <div class="dropdown-menu">
+                            <!-- Login and continue -->
+                            <?php
+                            echo '<a class="dropdown-item" href="login.php">Login</a>';
+                            ?>
+
+                                <!-- Logout and go back home -->
+                                <?php
+                            if (isset($_SESSION['email']) && $_SESSION['email']) {
+                                echo '<a class="dropdown-item" href="index.php">Logout</a>';
+                            }
+                            ?>
+
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <!-- End navbar links -->
+
+        </div>
+    </nav>
+    <!-- End Navigation -->
+
+    <br><br>
+
+    <!-- Start page content -->
+    <div class="container" ng-app="sortApp" ng-controller="mainController">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs nav-justified">
+            <li class="nav-item">
+                <a class="nav-link active" href="process.php?edit=<?php echo $row['id'] ?>">City information</a>
+            </li>
+            <br>
+            <li class="nav-item">
+                <a class="nav-link" href="#resInfo">Restaurant information</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#foodInfo">Food information</a>
+            </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content border mb-3">
+
+            <!-- Start tab panes city information -->
+            <div class="row">
+                <div class="col-lg-9">
+                    <div id="cityInfo" class="container tab-pane active"><br>
+
+                        <!-- Search city and button add new city -->
+                        <div class="input-group">
+                            <input type="text" id="searchCity" class="form-control" placeholder="Search . . ." style="width: 30px">
+
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+
+                            <a href="./src/admin/modules/user/city/addCity.php" target="_blank">
+                                <button type="button" class="btn btn-outline-primary">Add new City</button>
+                            </a>
+                        </div>
+                        <!-- Search city and button add new city -->
+
+                        <br>
+
+                        <!-- Table city info -->
+                        <?php
+                if ($result->num_rows > 0) {
+                    ?>
+                            <table class="table table-dark table-bordered table-hover" id="tbCity">
+                                <thead>
+                                    <tr style="color: blue">
+                                        <th>STT</th>
+                                        <th>City code</th>
+                                        <th>City name</th>
+                                        <th style="width: 28%; text-align: center">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tableCity">
+                                    <?php
+                        while ($row = $result->fetch_assoc()) {
+                            echo '
+                                <tr>
+                                    <td>' . $row["id"] . '</td>
+                                    <td>' . $row["city_code"] . '</td>
+                                    <td>' . $row["city_name"] . '</td>
+                                    <td>
+                                        <button class="btn btn-outline-info" data-toggle="modal" data-target="#myModal" id="btnEdit">Edit</button>
+                                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                        <button class="btn btn-outline-warning" id="btnRemove">Remove</button>
+                                    </td>
+                                </tr>';
+                        }
+                        ?>
+                                </tbody>
+                                <tfoot>
+                                    <tr style="color: blue">
+                                        <th>STT</th>
+                                        <th>City code</th>
+                                        <th>City name</th>
+                                        <th style="width: 18%">Action</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+
+                            <?php
+
+            } else {
+                echo "0 results";
+            }
+
+            ?>
+                                <!-- Table city info -->
+
+                                <!-- Start modal edit city info -->
+                                <div class="modal fade" id="myModal" role="dialog" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+
+                                            <!-- Modal Header -->
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">Edit City info</h4>
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            </div>
+                                            <!-- Modal Header -->
+
+                                            <!-- Modal body -->
+                                            <div class="modal-body">
+                                                <div class="form-group">
+                                                    <label for="stt" hidden>STT:</label>
+                                                    <input class="form-control" type="" name="stt" id="stt">
+                                                </div>
+                                                <div class="form-group" style="background: none">
+                                                    <label for="cityCode">City code:</label>
+                                                    <input class="form-control" type="date" name="cityCode" id="cityCode">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="cityName">City name:</label>
+                                                    <input class="form-control" type="text" name="cityName" id="cityName">
+                                                </div>
+                                            </div>
+                                            <!-- Modal body -->
+
+                                            <!-- Modal footer -->
+                                            <div class="modal-footer">
+                                                <button type="button" name="save" class="btn btn-outline-primary">Save changes</button>
+                                                <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+                                            </div>
+                                            <!-- Modal footer -->
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End modal edit city info -->
+
+                    </div>
+                </div>
+                <div class="col-lg-3" style="font-weight: bold; size: 30px">
+                    <!-- Start form add new City -->
+                    <br><br><br><br>
+                    <form action='addCity.php?do=add' method="POST">
+                        <div class="form-group">
+                            <label for="cityCode">City code:</label>
+                            <input type="text" class="form-control" id="cityCode" placeholder="Enter city code" name="cityCode">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cityName">City name:</label>
+                            <input type="text" class="form-control" id="cityName" placeholder="Enter city name" name="cityName">
+                        </div>
+
+                        <div class="form-group" style="text-align: center;">
+                            <button type="submit" id="btnSubmit" name="btnSubmit" class="btn btn-primary" style="width: 40%;border-radius: 20px">Save</button>
+                        </div>
+                    </form>
+                    <!-- End form add new City -->
+                </div>
+
+            </div>
+
+            <!-- End tab panes city information -->
+
+            <!-- Start tab panes restaurant information -->
+            <div id="resInfo" class="container tab-pane fade"><br>
+
+                <!-- Search restaurant add new restaurant -->
+                <div class="input-group">
+                    <input type="text" id="searchRes" class="form-control" placeholder="Search . . .">
+
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+
+                    <button type="button" class="btn btn-outline-primary">Add new Restaurant</button>
+                </div>
+                <!-- Search restaurant add new restaurant -->
+
+                <br>
+
+                <!-- Table restaurant info -->
+                <table class="table table-dark table-hover">
+                    <thead>
+                        <tr>
+                            <th>Firstname</th>
+                            <th>Lastname</th>
+                            <th>Email</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableRes">
+                        <tr>
+                            <td>John</td>
+                            <td>Doe</td>
+                            <td>john@example.com</td>
+                            <td>
+                                <button class="btn btn-success" data-toggle="modal" data-target="#myModal">Edit</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- Table restaurant info -->
+
+                <!-- Start modal edit city info -->
+                <!-- ///////////////////////////////////// -->
+
+                <!-- End modal edit city info -->
+
+            </div>
+            <!-- End tab panes restaurant information -->
+
+            <!-- Start tab panes food information -->
+            <div id="foodInfo" class="container tab-pane fade"><br>
+
+                <!-- Search food add new food -->
+                <div class="input-group mb-3">
+                    <input type="text" id="searchFood" class="form-control" placeholder="Search . . .">
+
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+
+                    <button type="button" class="btn btn-outline-primary">Add new Food</button>
+                </div>
+                <!-- Search food add new food -->
+
+                <br>
+
+                <!-- Table food info -->
+                <table class="table table-dark table-hover">
+                    <thead>
+                        <tr>
+                            <th>Firstname</th>
+                            <th>Lastname</th>
+                            <th>Email</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableFood">
+                        <tr>
+                            <td>John</td>
+                            <td>Doe</td>
+                            <td>john@example.com</td>
+                            <td>
+                                <button class="btn btn-success" data-toggle="modal" data-target="#myModal">Edit</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Mary</td>
+                            <td>Moe</td>
+                            <td>mary@example.com</td>
+                            <td>
+                                <button class="btn btn-success" data-toggle="modal" data-target="#myModal">Edit</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>July</td>
+                            <td>Dooley</td>
+                            <td>july@example.com</td>
+                            <td>
+                                <button class="btn btn-success" data-toggle="modal" data-target="#myModal">Edit</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- Table food info -->
+
+                <!-- Start modal edit city info -->
+                <!-- ///////////////////////////////////// -->
+
+                <!-- End modal edit city info -->
+
+            </div>
+            <!-- End tab panes food information -->
+
+        </div>
+        <!-- End tab panes -->
+
+    </div>
+    <!-- End page content -->
+
+</body>
+
+</html>

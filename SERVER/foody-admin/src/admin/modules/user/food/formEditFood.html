@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-3 col-3">
+            </div>
+            <!-- Start form add new Food -->
+            <div class="col-lg-6 col-md-8 col-sm-12 col-12">
+                <br><br>
+                <form action='addCity.php?do=add' method="POST" enctype="multipart/form-data">
+
+                    <!-- Code dishes -->
+                    <div class="form-group">
+                        <label for="foodCode">Code dishes:</label>
+                        <input type="text" class="form-control" id="foodCode" placeholder="Enter code dishes" name="foodCode">
+                    </div>
+                    <!-- Code dishes -->
+
+                    <!-- Food's name -->
+                    <div class="form-group">
+                        <label for="foodName">Food's name:</label>
+                        <input type="text" class="form-control" id="foodName" placeholder="Enter food's name" name="foodName">
+                    </div>
+                    <!-- Food's name -->
+
+                    <!-- Price of food -->
+                    <div class="form-group">
+                        <label for="foodName">Price of food:</label>
+                        <input type="number" class="form-control" id="foodName" placeholder="Enter price of food" name="foodName">
+                    </div>
+                    <!-- Price of food -->
+
+                    <!-- Picture of the dish -->
+                    <div class="form-group">
+                        <label for="foodImage">Picture of the dish:</label>
+                        <div class="input-group mb-3">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="inputGroupFile01" name="foodImage" onchange="readURL(this);">
+                                <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="text-align: center">
+                        <img id="blah" src="" alt="" srcset="" width="140px">
+                    </div>
+                    <!-- Picture of the dish -->
+
+                    <!-- Restaurant code -->
+                    <div class="form-group">
+                        <label for="foodResCode">Restaurant code:</label>
+                        <input type="text" class="form-control" id="foodResCode" placeholder="Please select a restaurant code" name="foodResCode">
+                    </div>
+                    <!-- Restaurant code -->
+
+                    <!-- Add new and update food information -->
+                    <div class="form-group" style="text-align: center;">
+                        <button type="submit" id="btnSaveFood" name="btnSaveFood" class="btn btn-outline-primary" style="width: 35%; border-radius: 20px">Save</button>
+                        <span>&nbsp;&nbsp;</span>
+                        <button type="submit" id="btnUpdateFood" name="btnUpdateFood" class="btn btn-outline-info" style="width: 35%; border-radius: 20px">Update</button>
+                    </div>
+                    <!-- Add new and update food information -->
+
+                </form>
+            </div>
+            <!-- End form add new City -->
+        </div>
+    </div>
+</body>
+
+<script>
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function(e) {
+                $('#blah')
+                    .attr('src', e.target.result)
+                    .width(340);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
+
+</html>
