@@ -1,61 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gray_light"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/main_background"
     tools:context=".main.MainActivity">
 
     <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/gray_light">
+        android:background="@color/red"
+        android:theme="@style/AppTheme.AppBarOverlay">
 
         <!--<android.support.v7.widget.Toolbar-->
             <!--android:id="@+id/toolbar"-->
             <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="?attr/actionBarSize"-->
+            <!--android:layout_height="45dp"-->
             <!--android:background="@drawable/side_nav_bar"-->
-            <!--app:popupTheme="@style/AppTheme.PopupOverlay" />-->
+            <!--app:titleTextColor="@color/gray_light" />-->
 
-        <!--<SearchView-->
-            <!--android:id="@+id/searchView"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="?attr/actionBarSize"-->
-            <!--android:iconifiedByDefault="false"-->
-            <!--android:queryHint="Search..."-->
-            <!--android:background="@drawable/bkgd_searchview"-->
-            <!--android:layout_marginStart="10dp"-->
-            <!--android:layout_marginTop="10dp"-->
-            <!--android:layout_marginEnd="10dp"-->
-            <!--android:layout_marginBottom="10dp"-->
-            <!--app:popupTheme="@style/AppTheme.PopupOverlay" />-->
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/app_bar"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:popupTheme="@style/AppTheme.PopupOverlay">
+            android:layout_height="wrap_content">
 
-            <SearchView
-                android:id="@+id/searchView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:iconifiedByDefault="false"
-                android:queryHint="Search..."
-                android:background="@drawable/bkgd_searchview"
-                android:layout_marginStart="0dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="17dp"
-                android:layout_marginBottom="10dp"
-                android:layout_centerHorizontal="false"
-                app:popupTheme="@style/AppTheme.PopupOverlay"/>
+            <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+                app:title="@string/app_name"
+            android:layout_height="45dp"
+                android:layout_weight="1"
+            app:titleTextColor="@color/white" />
 
-        </android.support.v7.widget.Toolbar>
+            <!--<ImageView-->
+                <!--android:id="@+id/img_search_main"-->
+                <!--android:layout_width="35dp"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_gravity="right"-->
+                <!--android:layout_marginRight="5dp"-->
+                <!--android:src="@drawable/ic_search"/>-->
+        </LinearLayout>
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_main" />
+    <include
+        layout="@layout/content_main"
+        tools:ignore="IncludeLayoutParam" />
 
 </android.support.design.widget.CoordinatorLayout>

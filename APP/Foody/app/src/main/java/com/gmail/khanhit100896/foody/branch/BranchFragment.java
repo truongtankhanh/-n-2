@@ -32,37 +32,46 @@ import java.util.Objects;
  */
 public class BranchFragment extends Fragment {
 
-    String getURL = Config.getConfig().getPathGetAllBranch();
+    /*
+     * Khai báo biến cần thiết
+     */
+    protected String getURL = Config.getConfig().getPathGetAllBranch();
+    protected RecyclerView recyclerBranch;
+    protected List<Branch> branchList;
+    protected BranchRecyclerViewAdapter adapter;
+    /*
+     */
 
-    RecyclerView recyclerBranch;
-    List<Branch> branchList;
-    BranchRecyclerViewAdapter adapter;
-
+    /*
+     * Hàm Constructor
+     */
     public BranchFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        //return inflater.inflate(R.layout.fragment_branch, container, false);
 
+        /*
+         * Ánh xạ và khởi tạo view, các biến đã khai báo
+         */
         View view = inflater.inflate(R.layout.fragment_branch, container, false);
-
         this.recyclerBranch = view.findViewById(R.id.recycler_branch);
         this.branchList = new ArrayList<>();
+        /*
+         */
 
+        // Gọi hàm lấy tất cả món ăn
         getAllFood(this.getURL);
-
-        this.adapter = new BranchRecyclerViewAdapter(getActivity(),this.branchList);
-        this.recyclerBranch.setLayoutManager(new GridLayoutManager(getActivity(),2));
-        this.recyclerBranch.setAdapter(this.adapter);
 
         return view;
     }
 
+    /*
+     * Hàm lấy tất cả món ăn từ CSDL và hiển thị theo dạng lưới
+     */
     private void getAllFood(String getURL) {
         RequestQueue requestQueue = Volley.newRequestQueue(Objects.requireNonNull(getActivity()));
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, getURL, null,
@@ -74,6 +83,7 @@ public class BranchFragment extends Fragment {
 
                             try {
                                 JSONObject object = response.getJSONObject(i);
+
                                 branchList.add(new Branch(
                                         object.getInt("ID"),
                                         object.getString("ResBranchCode"),
@@ -83,12 +93,20 @@ public class BranchFragment extends Fragment {
                                         object.getString("ResBranchOpenTime"),
                                         object.getString("ResBranchPrice"),
                                         object.getString("ResBranchImage")
-                                ));
+                                        ));
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
                         }
-                        adapter.notifyDataSetChanged();
+
+                        /*
+                         * Đổ dữ liệu đồ ăn vặt lên RecyclerView
+                         */
+                        adapter = new BranchRecyclerViewAdapter(getActivity(),branchList);
+                        recyclerBranch.setLayoutManager(new GridLayoutManager(getActivity(),2));
+                        recyclerBranch.setAdapter(adapter);
+                        /*
+                         */
                     }
                 },
                 new Response.ErrorListener() {

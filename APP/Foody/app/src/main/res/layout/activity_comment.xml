@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".main.CommentActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/red"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/img_back_branch_details"
+                android:layout_width="45dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/selector_back"
+                android:paddingLeft="10dp"
+                android:paddingRight="5dp"
+                android:src="@drawable/ic_arrow_back"/>
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/app_bar_branch_details"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@color/red"
+                android:paddingLeft="10dp"
+                android:layout_weight="1"
+                app:popupTheme="@style/AppTheme.PopupOverlay"
+                app:title="@string/app_name"
+                app:titleTextColor="@color/white">
+            </android.support.v7.widget.Toolbar>
+
+            <!--<TextView-->
+                <!--android:id="@+id/txtDang"-->
+                <!--android:layout_width="70dp"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:text="Đăng"-->
+                <!--android:background="@drawable/selector_back"-->
+                <!--android:textColor="@color/white"-->
+                <!--android:textSize="16sp"-->
+                <!--android:gravity="center"-->
+                <!--android:textAlignment="gravity"-->
+                <!--android:paddingEnd="15dp"-->
+                <!--android:paddingStart="15dp" />-->
+
+        </LinearLayout>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txt_name_branch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:hint="Tên món ăn"
+                android:paddingLeft="10dp"
+                android:layout_weight="1"
+                android:textColor="@color/black"
+                android:textColorHint="@color/gray_light"
+                android:textSize="15sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/txt_address_branch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Địa chỉ"
+                android:paddingLeft="10dp"
+                android:layout_weight="1"
+                android:layout_marginBottom="5dp"
+                android:textColor="@color/gray_light"
+                android:textColorHint="@color/gray_light"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_weight="3"-->
+            <!--android:orientation="vertical">-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/txt_ngay"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:hint="Ngày"-->
+                <!--android:paddingLeft="10dp"-->
+                <!--android:paddingRight="10dp"-->
+                <!--android:textColor="@color/black"-->
+                <!--android:textColorHint="@color/gray_light"-->
+                <!--android:textSize="14sp" />-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/txt_gio"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:hint="giờ"-->
+                <!--android:paddingLeft="10dp"-->
+                <!--android:paddingRight="10dp"-->
+                <!--android:layout_marginBottom="5dp"-->
+                <!--android:textColor="@color/gray_light"-->
+                <!--android:textColorHint="@color/gray_light"-->
+                <!--android:textSize="14sp" />-->
+        <!--</LinearLayout>-->
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="1sp"
+        android:background="@color/gray_light"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/white"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        tools:layout_editor_absoluteX="16dp"
+        android:orientation="horizontal"
+        tools:ignore="MissingConstraints">
+
+        <ImageView
+            android:id="@+id/img_user"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:padding="5dp"
+            android:gravity="left"
+            android:layout_weight="1"
+            android:src="@drawable/ic_account_box" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_weight="20"
+            android:orientation="vertical"
+            android:textAlignment="gravity">
+
+            <TextView
+                android:id="@+id/txt_user_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left|center"
+                android:paddingStart="5dp"
+                android:text="Tên người dùng"
+                android:layout_weight="1"
+                android:textAlignment="gravity"
+                android:textColor="@color/black"
+                android:layout_marginTop="5dp"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txt_create_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left|center"
+                android:paddingStart="15dp"
+                android:layout_weight="1"
+                android:text="Ngày comment"
+                android:layout_marginBottom="5dp"
+                android:textAlignment="gravity"
+                android:textColor="@color/gray"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/img_dang"
+            android:layout_width="25dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/selector_comment"
+            android:gravity="center"
+            android:textAlignment="gravity"
+            android:layout_weight="1"
+            android:src="@drawable/ic_done_all" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="match_parent"
+        android:layout_height="1sp"
+        android:background="@color/gray_light"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linearLayout2" />
+
+    <EditText
+        android:id="@+id/edtComment"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="5dp"
+        android:layout_marginTop="8dp"
+        android:background="@null"
+        android:ems="10"
+        android:gravity="left"
+        android:hint="Viết trên 100 từ, đúng chính tả, ngôn từ văn hóa, không spam..."
+        android:inputType="textCapCharacters|textCapWords|textMultiLine|textImeMultiLine|textPersonName"
+        android:padding="10dp"
+        android:textAlignment="gravity"
+        android:textColor="@color/black"
+        android:textColorHint="@color/gray_light"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView1" />
+
+</android.support.constraint.ConstraintLayout>

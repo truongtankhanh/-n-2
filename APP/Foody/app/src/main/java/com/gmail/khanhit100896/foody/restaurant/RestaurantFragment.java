@@ -33,12 +33,19 @@ import java.util.Objects;
  */
 public class RestaurantFragment extends Fragment {
 
+    /*
+     * Khai báo các biến cần thiết
+     */
     String getURL = Config.getConfig().getPathGetAllRestaurant();
-
     RecyclerView recyclerRestaurant;
     List<Restaurant> restaurantList;
     RestaurantRecyclerViewAdapter adapter;
+    /*
+     */
 
+    /*
+     * Hàm Constructor
+     */
     public RestaurantFragment() {
         // Required empty public constructor
     }
@@ -47,20 +54,25 @@ public class RestaurantFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_restaurant, container, false);
 
+        /*
+         * Ánh xạ và khởi tạo view, các biến đã khai báo
+         */
+        View view = inflater.inflate(R.layout.fragment_restaurant, container, false);
         this.recyclerRestaurant = view.findViewById(R.id.recycler_restaurant);
         this.restaurantList = new ArrayList<>();
+        /*
+         */
 
+        // Gọi hàm lấy danh sách nhà hàng
         getAllRestaurant(this.getURL);
-
-        this.adapter = new RestaurantRecyclerViewAdapter(getActivity(),this.restaurantList);
-        this.recyclerRestaurant.setLayoutManager(new GridLayoutManager(getActivity(),2));
-        this.recyclerRestaurant.setAdapter(this.adapter);
 
         return view;
     }
 
+    /*
+     * Hàm lấy danh sách nhà hàng từ CSDL và hiển thị theo dạng lưới
+     */
     private void getAllRestaurant(String getUrl){
         RequestQueue requestQueue = Volley.newRequestQueue(Objects.requireNonNull(getActivity()));
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, getUrl, null,
@@ -83,7 +95,15 @@ public class RestaurantFragment extends Fragment {
                                 e.printStackTrace();
                             }
                         }
-                        adapter.notifyDataSetChanged();
+
+                        /*
+                         * Đổ dữ liệu đồ ăn vặt lên RecyclerView
+                         */
+                        adapter = new RestaurantRecyclerViewAdapter(getActivity(),restaurantList);
+                        recyclerRestaurant.setLayoutManager(new GridLayoutManager(getActivity(),2));
+                        recyclerRestaurant.setAdapter(adapter);
+                        /*
+                         */
                     }
                 },
                 new Response.ErrorListener() {

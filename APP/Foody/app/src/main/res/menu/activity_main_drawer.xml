@@ -6,11 +6,12 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_city"
-            android:icon="@drawable/ic_menu"
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_home"
             android:iconTint="@color/black"
-            android:title="Thành phố"
-            app:showAsAction="always" />
+            android:title="Trang chủ"
+            app:showAsAction="always"
+            android:checked="true"/>
         <item
             android:id="@+id/nav_restaurant"
             android:icon="@drawable/ic_restaurant"
@@ -21,19 +22,18 @@
             android:icon="@drawable/ic_food"
             android:iconTint="@color/black"
             android:title="Danh sách món ăn" />
-    </group>
 
-    <item android:title="Tùy chọn">
-        <menu>
-            <item
-                android:id="@+id/nav_signin"
-                android:icon="@drawable/ic_login_icon"
-                android:title="Đăng nhập" />
-            <item
-                android:id="@+id/nav_signout"
-                android:icon="@drawable/ic_logout_icon"
-                android:title="Đăng xuất" />
-        </menu>
-    </item>
+        <item
+            android:id="@+id/nav_like"
+            android:icon="@drawable/ic_favorite"
+            android:iconTint="@color/black"
+            android:title="Danh sách yêu thích" />
+
+        <item
+            android:id="@+id/nav_history"
+            android:icon="@drawable/ic_history"
+            android:iconTint="@color/black"
+            android:title="Lịch sử" />
+    </group>
 
 </menu>

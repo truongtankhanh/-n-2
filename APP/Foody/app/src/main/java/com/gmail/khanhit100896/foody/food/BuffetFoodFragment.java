@@ -32,12 +32,19 @@ import java.util.Objects;
  */
 public class BuffetFoodFragment extends Fragment {
 
-    String getURL = Config.getConfig().getPathGetAllFoodBuffet();
+    /*
+     * Khai báo biến cần thiết
+     */
+    protected String getURL = Config.getConfig().getPathGetAllFoodBuffet();
+    protected RecyclerView recyclerFoodBuffet;
+    protected List<Food> foodBuffetList;
+    protected FoodRecyclerViewAdapter adapter;
+    /*
+     */
 
-    RecyclerView recyclerFoodBuffet;
-    List<Food> foodBuffetList;
-    FoodRecyclerViewAdapter adapter;
-
+    /*
+     * Hàm Constructor
+     */
     public BuffetFoodFragment() {
         // Required empty public constructor
     }
@@ -46,21 +53,24 @@ public class BuffetFoodFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        //return inflater.inflate(R.layout.fragment_buffet_food, container, false);
 
+        /*
+         * Ánh xạ và khởi tạo view, các biến đã khai báo
+         */
         View view = inflater.inflate(R.layout.fragment_buffet_food, container, false);
-
         this.recyclerFoodBuffet = view.findViewById(R.id.recycler_buffet);
         this.foodBuffetList = new ArrayList<>();
+        /*
+         */
 
         getAllFoodBuffet(this.getURL);
 
-        this.adapter = new FoodRecyclerViewAdapter(getActivity(),this.foodBuffetList);
-        this.recyclerFoodBuffet.setLayoutManager(new GridLayoutManager(getActivity(),2));
-        this.recyclerFoodBuffet.setAdapter(this.adapter);
-
         return view;
     }
+
+    /*
+     * Hàm lấy tất cả các món buffet từ CSDL và hiển thị theo dạng lưới
+     */
     private void getAllFoodBuffet(String getURL) {
         RequestQueue requestQueue = Volley.newRequestQueue(Objects.requireNonNull(getActivity()));
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, getURL, null,
@@ -72,6 +82,7 @@ public class BuffetFoodFragment extends Fragment {
 
                             try {
                                 JSONObject object = response.getJSONObject(i);
+
                                 foodBuffetList.add(new Food(
                                         object.getInt("ID"),
                                         object.getString("FoodCode"),
@@ -80,13 +91,21 @@ public class BuffetFoodFragment extends Fragment {
                                         object.getString("FoodPrice"),
                                         object.getString("ImageAddress"),
                                         object.getString("ResCode"),
-                                        object.getString("KindCode")
+                                        object.getString("KindCode"),
+                                        object.getInt("ActionLike")
                                 ));
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
                         }
-                        adapter.notifyDataSetChanged();
+                        /*
+                         * Đổ dữ liệu đồ ăn vặt lên RecyclerView
+                         */
+                        adapter = new FoodRecyclerViewAdapter(getActivity(),foodBuffetList);
+                        recyclerFoodBuffet.setLayoutManager(new GridLayoutManager(getActivity(),2));
+                        recyclerFoodBuffet.setAdapter(adapter);
+                        /*
+                         */
                     }
                 },
                 new Response.ErrorListener() {

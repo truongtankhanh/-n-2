@@ -3,12 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gray_light"
+    android:background="#efefef"
     tools:context=".home.HomeFragment">
 
     <!-- TODO: Update blank fragment layout -->
 
     <ScrollView
+        android:id="@+id/scrollview"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -17,13 +18,66 @@
             android:layout_height="match_parent"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
+            android:paddingBottom="33dp"
             android:orientation="vertical">
+
+            <!--Danh sách gợi ý-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/bkgd_home"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginStart="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Gần đây/Gợi ý cho bạn"
+                        android:textColor="@color/black"
+                        android:layout_weight="1"/>
+
+                    <TextView
+                        android:id="@+id/txtDSGoiY"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:drawableRight="@drawable/ic_right"
+                        android:gravity="right"
+                        android:text="Xem thêm"
+                        android:textAlignment="gravity"
+                        android:textColor="@drawable/selector_text_home"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="350dp"
+                    android:layout_height="1dp"
+                    android:layout_gravity="center"
+                    android:textAlignment="gravity"
+                    android:background="@color/gray_light" />
+
+                <FrameLayout
+                    android:id="@+id/home_suggestions_frame"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                </FrameLayout>
+
+            </LinearLayout>
+            <!--Danh sách gợi ý-->
 
             <!--Danh sách nhà hàng-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/bkgd_home"
                 android:orientation="vertical">
@@ -48,12 +102,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="2"
-                        android:background="@drawable/selector_cardview"
                         android:drawableRight="@drawable/ic_right"
                         android:gravity="right"
                         android:text="Xem thêm"
                         android:textAlignment="gravity"
-                        android:textColor="#e74c3c"
+                        android:textColor="@drawable/selector_text_home"
                         android:textStyle="bold" />
                 </LinearLayout>
 
@@ -103,12 +156,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="2"
-                        android:background="@drawable/selector_cardview"
                         android:drawableRight="@drawable/ic_right"
                         android:gravity="right"
                         android:text="Xem thêm"
                         android:textAlignment="gravity"
-                        android:textColor="#e74c3c"
+                        android:textColor="@drawable/selector_text_home"
                         android:textStyle="bold" />
                 </LinearLayout>
 
@@ -158,12 +210,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="2"
-                        android:background="@drawable/selector_cardview"
                         android:drawableRight="@drawable/ic_right"
                         android:gravity="right"
                         android:text="Xem thêm"
                         android:textAlignment="gravity"
-                        android:textColor="#e74c3c"
+                        android:textColor="@drawable/selector_text_home"
                         android:textStyle="bold" />
                 </LinearLayout>
 
@@ -213,12 +264,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="2"
-                        android:background="@drawable/selector_cardview"
                         android:drawableRight="@drawable/ic_right"
                         android:gravity="right"
                         android:text="Xem thêm"
                         android:textAlignment="gravity"
-                        android:textColor="#e74c3c"
+                        android:textColor="@drawable/selector_text_home"
                         android:textStyle="bold" />
                 </LinearLayout>
 
@@ -268,12 +318,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="2"
-                        android:background="@drawable/selector_cardview"
                         android:drawableRight="@drawable/ic_right"
                         android:gravity="right"
                         android:text="Xem thêm"
                         android:textAlignment="gravity"
-                        android:textColor="#e74c3c"
+                        android:textColor="@drawable/selector_text_home"
                         android:textStyle="bold" />
                 </LinearLayout>
 

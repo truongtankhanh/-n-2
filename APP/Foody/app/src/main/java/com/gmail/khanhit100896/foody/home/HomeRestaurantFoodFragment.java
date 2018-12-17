@@ -35,45 +35,54 @@ import java.util.Random;
  */
 public class HomeRestaurantFoodFragment extends Fragment {
 
-    String getURL = Config.getConfig().getPathGetAllBranch();
+    /*
+     * Khai báo biến cần thiết
+     */
+    protected String getURL = Config.getConfig().getPathGetAllBranch();
+    protected RecyclerView recyclerBranch;
+    protected List<Branch> branchList;
+    protected BranchRecyclerViewAdapter adapter;
+    /*
+     */
 
-    RecyclerView recyclerBranch;
-    List<Branch> branchList;
-    BranchRecyclerViewAdapter adapter;
-
+    /*
+     * Hàm Constructor
+     */
     public HomeRestaurantFoodFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        //return inflater.inflate(R.layout.fragment_home_restaurant_food, container, false);
-        View view = inflater.inflate(R.layout.fragment_home_restaurant_food, container, false);
 
+        /*
+         * Ánh xạ và khởi tạo view, các biến đã khai báo
+         */
+        View view = inflater.inflate(R.layout.fragment_home_restaurant_food, container, false);
         this.recyclerBranch = view.findViewById(R.id.recycler_restaurant_food);
         this.branchList = new ArrayList<>();
+        /*
+         */
 
-        getAllFood(this.getURL);
-
-        this.adapter = new BranchRecyclerViewAdapter(getActivity(),this.branchList);
-        this.recyclerBranch.setLayoutManager(new LinearLayoutManager(getActivity(),
-                LinearLayoutManager.HORIZONTAL, false));
-        this.recyclerBranch.setAdapter(this.adapter);
+        // Gọi hàm lấy tất cả các món nhà hàng
+        getAllFoodRestaurant(this.getURL);
 
         return view;
     }
 
-    private void getAllFood(String getURL) {
+    /*
+     * Hàm lấy tất cả các món nhà hàng từ CSDL và hiển thị theo dạng nằm ngang
+     */
+    private void getAllFoodRestaurant(String getURL) {
         RequestQueue requestQueue = Volley.newRequestQueue(Objects.requireNonNull(getActivity()));
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, getURL, null,
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
                         branchList.clear();
-                        for (int i=0;i<20;i++){
+                        for (int i=0;i<10;i++){
 
                             Random rand = new Random();
 
@@ -82,6 +91,7 @@ public class HomeRestaurantFoodFragment extends Fragment {
 
                             try {
                                 JSONObject object = response.getJSONObject(number);
+
                                 branchList.add(new Branch(
                                         object.getInt("ID"),
                                         object.getString("ResBranchCode"),
@@ -96,7 +106,16 @@ public class HomeRestaurantFoodFragment extends Fragment {
                                 e.printStackTrace();
                             }
                         }
-                        adapter.notifyDataSetChanged();
+
+                        /*
+                         * Đổ dữ liệu đồ ăn vặt lên RecyclerView
+                         */
+                        adapter = new BranchRecyclerViewAdapter(getActivity(),branchList);
+                        recyclerBranch.setLayoutManager(new LinearLayoutManager(getActivity(),
+                                LinearLayoutManager.HORIZONTAL, false));
+                        recyclerBranch.setAdapter(adapter);
+                        /*
+                         */
                     }
                 },
                 new Response.ErrorListener() {

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gray_light"
+    android:background="@color/main_background"
     tools:context=".food.FoodActivity">
 
     <android.support.design.widget.AppBarLayout
@@ -14,27 +14,18 @@
         android:background="@color/gray_light"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:theme="@style/AppTheme.AppBarOverlay">
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/app_bar"
+            android:id="@+id/app_bar_food"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
+            android:paddingLeft="20dp"
+            app:title="Danh sách các món ăn"
+            app:titleTextColor="@color/white"
+            android:background="@color/red"
             app:popupTheme="@style/AppTheme.PopupOverlay">
-
-            <SearchView
-                android:id="@+id/searchView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_centerHorizontal="false"
-                android:layout_marginStart="0dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="17dp"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/bkgd_searchview"
-                android:iconifiedByDefault="false"
-                android:queryHint="Search..."
-                app:popupTheme="@style/AppTheme.PopupOverlay" />
 
         </android.support.v7.widget.Toolbar>
 
@@ -44,12 +35,22 @@
         android:id="@+id/food_frame"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginStart="13dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
 
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_food"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:textColor="@drawable/custom_textcolor_cardview">
+        </android.support.v7.widget.RecyclerView>
 
     </FrameLayout>
 

@@ -6,9 +6,14 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -33,12 +38,19 @@ import java.util.Objects;
  */
 public class FoodFragment extends Fragment {
 
-    String getURL = Config.getConfig().getPathGetAllFood();
+    /*
+     * Khai báo biến cần thiết
+     */
+    protected String getURL = Config.getConfig().getPathGetAllFood();
+    protected RecyclerView recyclerFood;
+    protected List<Food> foodList;
+    protected FoodRecyclerViewAdapter adapter;
+    /*
+     */
 
-    RecyclerView recyclerFood;
-    List<Food> foodList;
-    FoodRecyclerViewAdapter adapter;
-
+    /*
+     * Hàm Constructor
+     */
     public FoodFragment() {
         // Required empty public constructor
     }
@@ -47,20 +59,24 @@ public class FoodFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_food, container, false);
 
-        this.recyclerFood = view.findViewById(R.id.recycler_food);
-        this.foodList = new ArrayList<>();
+        /*
+         * Ánh xạ và khởi tạo view, các biến đã khai báo
+         */
+        View view = inflater.inflate(R.layout.fragment_food, container, false);
+        this.recyclerFood       = view.findViewById(R.id.recycler_food);
+        this.foodList           = new ArrayList<>();
+        /*
+         */
 
         getAllFood(this.getURL);
-
-        this.adapter = new FoodRecyclerViewAdapter(getActivity(),this.foodList);
-        this.recyclerFood.setLayoutManager(new GridLayoutManager(getActivity(),2));
-        this.recyclerFood.setAdapter(this.adapter);
 
         return view;
     }
 
+    /*
+     * Hàm lấy tất cả các món ăn từ CSDL và hiển thị theo dạng lưới
+     */
     private void getAllFood(String getURL) {
         RequestQueue requestQueue = Volley.newRequestQueue(Objects.requireNonNull(getActivity()));
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, getURL, null,
@@ -71,6 +87,7 @@ public class FoodFragment extends Fragment {
                         for (int i=0;i<response.length();i++){
                             try {
                                 JSONObject object = response.getJSONObject(i);
+
                                 foodList.add(new Food(
                                         object.getInt("ID"),
                                         object.getString("FoodCode"),
@@ -85,7 +102,15 @@ public class FoodFragment extends Fragment {
                                 e.printStackTrace();
                             }
                         }
-                        adapter.notifyDataSetChanged();
+
+                        /*
+                         * Đổ dữ liệu đồ ăn vặt lên RecyclerView
+                         */
+                        adapter = new FoodRecyclerViewAdapter(getActivity(),foodList);
+                        recyclerFood.setLayoutManager(new GridLayoutManager(getActivity(),2));
+                        recyclerFood.setAdapter(adapter);
+                        /*
+                         */
                     }
                 },
                 new Response.ErrorListener() {
@@ -98,4 +123,26 @@ public class FoodFragment extends Fragment {
         requestQueue.add(jsonArrayRequest);
     }
 
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.main,menu);
+
+        MenuItem item = menu.findItem(R.id.action_search);
+        SearchView search = (SearchView) item.getActionView();
+
+        search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                Toast.makeText(getContext(),query,Toast.LENGTH_SHORT).show();
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                adapter.getFilter().filter(newText);
+                return false;
+            }
+        });
+        super.onCreateOptionsMenu(menu, inflater);
+    }
 }

@@ -33,11 +33,16 @@ import java.util.Objects;
  */
 public class CityFragment extends Fragment {
 
-    String getURL = Config.getConfig().getPathGetAllCity();
+    /*
+     * Khái báo biến cần thiết
+     */
+    protected String getURL = Config.getConfig().getPathGetAllCity();
 
-    RecyclerView recyclerCity;
-    List<City> cityList;
-    CityRecyclerViewAdapter adapter;
+    protected RecyclerView recyclerCity;
+    protected List<City> cityList;
+    protected CityRecyclerViewAdapter adapter;
+    /*
+     */
 
     public CityFragment() {
         // Required empty public constructor
@@ -49,18 +54,22 @@ public class CityFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_city, container, false);
 
+        /*
+         * Ánh xạ và khởi tạo biến
+         */
         this.recyclerCity = view.findViewById(R.id.recycler_city);
         this.cityList = new ArrayList<>();
+        /*
+         */
 
         getAllCity(getURL);
-
-        this.adapter = new CityRecyclerViewAdapter(getActivity(),this.cityList);
-        this.recyclerCity.setLayoutManager(new GridLayoutManager(getActivity(),2));
-        this.recyclerCity.setAdapter(this.adapter);
 
         return view;
     }
 
+    /*
+     * Hàm lấy tất cả thành phố từ CSDL
+     */
     private void getAllCity(String getURL) {
         RequestQueue requestQueue = Volley.newRequestQueue(Objects.requireNonNull(getActivity()));
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, getURL, null,
@@ -81,7 +90,14 @@ public class CityFragment extends Fragment {
                                 e.printStackTrace();
                             }
                         }
-                        adapter.notifyDataSetChanged();
+                        /*
+                         * Đổ dữ liệu lên RecyclerView
+                         */
+                        adapter = new CityRecyclerViewAdapter(getActivity(),cityList);
+                        recyclerCity.setLayoutManager(new GridLayoutManager(getActivity(),2));
+                        recyclerCity.setAdapter(adapter);
+                        /*
+                         */
                     }
                 },
                 new Response.ErrorListener() {

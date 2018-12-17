@@ -4,10 +4,10 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
-    <uses-permission-sdk-23 android:name="android.permission.INTERNET" />
-
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
     <application
         android:allowBackup="true"
@@ -16,6 +16,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/map_api_key" />
+        <meta-data android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id"/>
+
         <activity android:name=".main.LoginActivity" />
         <activity android:name=".main.RegisterActivity" />
         <activity
@@ -30,14 +36,28 @@
         </activity>
         <activity android:name=".food.FoodDetailsActivity" />
         <activity android:name=".restaurant.RestaurantBranchActivity" />
-        <activity android:name=".branch.BranchDetailsActivity" />
+        <activity android:name=".branch.BranchDetailsActivity"
+            android:theme="@style/AppTheme"/>
         <activity android:name=".home.HomRestaurantActivity" />
         <activity android:name=".home.HomeRestaurantFoodActivity" />
         <activity android:name=".home.HomeFoodBuffetActivity" />
         <activity android:name=".home.HomeFoodChayActivity" />
         <activity android:name=".home.HomeFoodAVActivity" />
         <activity android:name=".city.CityActivity" />
-        <activity android:name=".food.FoodActivity"></activity>
+        <activity android:name=".food.FoodActivity" />
+        <activity android:name=".main.SplashScreenActivity" />
+        <activity android:name=".main.MapActivity" />
+        <activity android:name=".main.SearchActivity" />
+        <activity android:name=".main.CommentActivity" />
+        <activity android:name=".like.LikeActivity" />
+        <activity android:name=".like.BranchLikeDetailsActivity" />
+        <activity android:name=".like.FoodLikeDetailsActivity" />
+        <activity android:name=".like.RestaurantBranchLikeActivity" />
+        <activity android:name=".history.HistoryActivity" />
+        <activity android:name=".history.BranchTouchDetailsActivity" />
+        <activity android:name=".history.FoodTouchDetailsActivity" />
+        <activity android:name=".history.RestaurantBranchTouchActivity" />
+        <activity android:name=".home.HomeNearActivity"></activity>
     </application>
 
 </manifest>

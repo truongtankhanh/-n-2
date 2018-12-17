@@ -4,16 +4,55 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gray_light"
+    android:background="@color/main_background"
     tools:context=".branch.BranchDetailsActivity">
 
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/red"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/img_back_branch_details"
+                android:layout_width="45dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/selector_back"
+                android:paddingLeft="10dp"
+                android:paddingRight="5dp"
+                android:src="@drawable/ic_arrow_back"/>
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/app_bar_branch_details"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@color/red"
+                android:paddingLeft="10dp"
+                app:popupTheme="@style/AppTheme.PopupOverlay"
+                app:title="@string/app_name"
+                app:titleTextColor="@color/white">
+            </android.support.v7.widget.Toolbar>
+
+        </LinearLayout>
+
+    </android.support.design.widget.AppBarLayout>
+
     <ScrollView
-        android:layout_width="385dp"
-        android:layout_height="570dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -24,110 +63,171 @@
             <ImageView
                 android:id="@+id/img_branch_details"
                 android:layout_width="match_parent"
-                android:layout_height="220dp"
+                android:layout_height="205dp"
                 android:background="@color/grey_primary_dark" />
 
             <TextView
                 android:id="@+id/txt_name_branch_details"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="14dp"
+                android:layout_marginStart="14dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="14dp"
                 android:layout_marginBottom="10dp"
-                android:gravity="center"
+                android:gravity="left"
+                android:paddingLeft="10dp"
                 android:text="Tên chi nhánh nhà hàng"
                 android:textColor="@color/black"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:layout_width="match_parent"
-                android:background="@color/gray_light"
-                android:layout_height="6dp" />
+                android:layout_height="1dp"
+                android:background="@color/gray_light" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:src="@drawable/ic_action_location"/>
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="14dp"
+                    android:src="@drawable/ic_action_location" />
 
                 <TextView
                     android:id="@+id/txt_address_branch"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="0dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="12dp"
                     android:layout_marginEnd="16dp"
                     android:layout_weight="1"
-                    android:textColor="@color/blue_grey_primary"
                     android:text="Địa chỉ chi nhánh"
-                    android:textSize="16sp" />
+                    android:textColor="@drawable/selector_text_details"
+                    android:textSize="14sp" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="14dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginEnd="14dp"
-                    android:src="@drawable/ic_action_time"/>
+                    android:src="@drawable/ic_action_time" />
 
                 <TextView
                     android:id="@+id/txt_open_time"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="0dp"
-                    android:layout_marginTop="14dp"
+                    android:layout_marginTop="12dp"
                     android:layout_marginEnd="14dp"
                     android:layout_weight="1"
-                    android:textColor="@color/blue_grey_primary"
                     android:text="Giờ mở cửa"
-                    android:textSize="16sp" />
+                    android:textColor="@color/grey_primary"
+                    android:textSize="14sp" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="14dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginEnd="14dp"
-                    android:src="@drawable/ic_action_money"/>
+                    android:src="@drawable/ic_action_money" />
 
                 <TextView
                     android:id="@+id/txt_price_branch"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="0dp"
-                    android:layout_marginTop="14dp"
+                    android:layout_marginTop="12dp"
                     android:layout_marginEnd="14dp"
+                    android:layout_marginBottom="14dp"
                     android:layout_weight="1"
-                    android:textColor="@color/blue_grey_primary"
                     android:text="Giá món ăn"
-                    android:textSize="16sp" />
+                    android:textColor="@color/grey_primary"
+                    android:textSize="14sp" />
             </LinearLayout>
 
             <TextView
                 android:layout_width="match_parent"
-                android:background="@color/gray_light"
-                android:layout_height="6dp" />
+                android:layout_height="1dp"
+                android:background="@color/gray_light" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/linearLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/txt_num_comment"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="14dp"
+                        android:layout_marginEnd="14dp"
+                        android:layout_marginBottom="14dp"
+                        android:layout_weight="1"
+                        android:paddingLeft="10dp"
+                        android:text="0 bình luận"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
+
+                    <ImageView
+                        android:id="@+id/imgComment"
+                        android:background="@drawable/selector_cardview"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="16dp"
+                        android:src="@drawable/ic_insert_comment"/>
+                </LinearLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="13dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/recycler_comment"
+                        android:background="@color/white"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textColor="@color/blue_grey_primary">
+                    </android.support.v7.widget.RecyclerView>
+
+                </FrameLayout>
+
+            </LinearLayout>
 
         </LinearLayout>
 

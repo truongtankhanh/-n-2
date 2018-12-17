@@ -32,37 +32,46 @@ import java.util.Objects;
  */
 public class AVFoodFragment extends Fragment {
 
-    String getURL = Config.getConfig().getPathGetAllFoodAV();
+    /*
+     * Khai báo biến cần thiết
+     */
+    protected String getURL = Config.getConfig().getPathGetAllFoodAV();
+    protected RecyclerView recyclerFoodAV;
+    protected List<Food> foodAVList;
+    protected FoodRecyclerViewAdapter adapter;
+    /*
+     */
 
-    RecyclerView recyclerFoodAV;
-    List<Food> foodAVList;
-    FoodRecyclerViewAdapter adapter;
-
+    /*
+     * Hàm Constructor
+     */
     public AVFoodFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        //return inflater.inflate(R.layout.fragment_avfood, container, false);
 
+        /*
+         * Ánh xạ và khởi tạo view, các biến đã khai báo
+         */
         View view = inflater.inflate(R.layout.fragment_avfood, container, false);
-
         this.recyclerFoodAV = view.findViewById(R.id.recycler_av);
         this.foodAVList = new ArrayList<>();
+        /*
+         */
 
+        // Gọi hàm tất cả các món ăn vặt
         getAllFoodAV(this.getURL);
-
-        this.adapter = new FoodRecyclerViewAdapter(getActivity(),this.foodAVList);
-        this.recyclerFoodAV.setLayoutManager(new GridLayoutManager(getActivity(),2));
-        this.recyclerFoodAV.setAdapter(this.adapter);
 
         return view;
     }
 
+    /*
+     * Hàm lấy tất cả các món ăn vặt từ CSDL và hiển thị theo dạng lưới
+     */
     private void getAllFoodAV(String getURL) {
         RequestQueue requestQueue = Volley.newRequestQueue(Objects.requireNonNull(getActivity()));
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, getURL, null,
@@ -74,6 +83,7 @@ public class AVFoodFragment extends Fragment {
 
                             try {
                                 JSONObject object = response.getJSONObject(i);
+
                                 foodAVList.add(new Food(
                                         object.getInt("ID"),
                                         object.getString("FoodCode"),
@@ -82,13 +92,22 @@ public class AVFoodFragment extends Fragment {
                                         object.getString("FoodPrice"),
                                         object.getString("ImageAddress"),
                                         object.getString("ResCode"),
-                                        object.getString("KindCode")
+                                        object.getString("KindCode"),
+                                        object.getInt("ActionLike")
                                 ));
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
                         }
-                        adapter.notifyDataSetChanged();
+                        //Toast.makeText(getContext(),foodAVList.size(),Toast.LENGTH_SHORT).show();
+                        /*
+                         * Đổ dữ liệu đồ ăn vặt lên RecyclerView
+                         */
+                        adapter = new FoodRecyclerViewAdapter(getActivity(),foodAVList);
+                        recyclerFoodAV.setLayoutManager(new GridLayoutManager(getActivity(),2));
+                        recyclerFoodAV.setAdapter(adapter);
+                        /*
+                         */
                     }
                 },
                 new Response.ErrorListener() {

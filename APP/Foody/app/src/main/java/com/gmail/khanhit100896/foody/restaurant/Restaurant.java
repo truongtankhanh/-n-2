@@ -7,8 +7,11 @@ public class Restaurant {
     private String num_of_branch;
     private String img_address;
     private String city_code;
+    private int action_like;
+    private int action_touch;
 
-    public Restaurant(int id, String res_code, String res_name, String num_of_branch, String img_address, String city_code) {
+    public Restaurant(int id, String res_code, String res_name, String num_of_branch, String img_address,
+                      String city_code) {
         this.setId(id);
         this.setRes_code(res_code);
         this.setRes_name(res_name);
@@ -63,5 +66,21 @@ public class Restaurant {
 
     public void setCity_code(String city_code) {
         this.city_code = city_code;
+    }
+
+    public int getAction_like() {
+        return action_like;
+    }
+
+    public void setAction_like(int action_like) {
+        this.action_like = action_like;
+    }
+
+    public int getAction_touch() {
+        return action_touch;
+    }
+
+    public void setAction_touch(int action_touch) {
+        this.action_touch = action_touch;
     }
 }

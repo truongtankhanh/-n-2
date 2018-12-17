@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Vietnamese Cuisine</string>
     <string name="action_settings">Settings</string>
+    <string name="map_api_key">AIzaSyADOCPRYgNkYkSOrVflrA77PPki4bUQbhU</string>
+    <string name="facebook_app_id">764867227184244</string>
 
     <!-- Strings related to Main -->
     <string name="navigation_drawer_open">Open navigation drawer</string>

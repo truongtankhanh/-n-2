@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+<menu
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
@@ -7,13 +7,13 @@
         android:icon="@drawable/ic_home"
         android:title="Trang chủ" />
     <!--<item-->
-        <!--android:id="@+id/nav_city"-->
-        <!--android:icon="@drawable/ic_city"-->
-        <!--android:title="Thành phố" />-->
-    <!--<item-->
-        <!--android:id="@+id/nav_restaurant"-->
-        <!--android:icon="@drawable/ic_restaurant"-->
-        <!--android:title="Nhà hàng" />-->
+        <!--android:id="@+id/nav_notification"-->
+        <!--android:icon="@drawable/ic_notification"-->
+        <!--android:title="Thông báo" />-->
+    <item
+        android:id="@+id/nav_account"
+        android:icon="@drawable/ic_account_box"
+        android:title="Tài khoản" />
     <!--<item-->
         <!--android:id="@+id/nav_food"-->
         <!--android:icon="@drawable/ic_menu"-->

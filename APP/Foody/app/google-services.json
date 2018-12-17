@@ -15,14 +15,27 @@
       },
       "oauth_client": [
         {
+          "client_id": "644485540046-i7qd8a7c7rf3ga2dffogoc0ndhc4l7hr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.gmail.khanhit100896.foody",
+            "certificate_hash": "8f82243c86bbfce4d5b76343d9cae5f05e0df411"
+          }
+        },
+        {
+          "client_id": "644485540046-682bl255sl8fkl205boht7ks59jch15c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.gmail.khanhit100896.foody",
+            "certificate_hash": "7d2d4e3af938b8aec917f17480b845b0689bd5b3"
+          }
+        },
+        {
           "client_id": "644485540046-pg2cotuu1fj93f3bbfub9aefbtqu1pqg.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
-        {
-          "current_key": "AIzaSyDxB2LUxX9y8mw-eUYzcLmTaixYfitRLTU"
-        },
         {
           "current_key": "AIzaSyDxB2LUxX9y8mw-eUYzcLmTaixYfitRLTU"
         }
@@ -32,8 +45,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "644485540046-pg2cotuu1fj93f3bbfub9aefbtqu1pqg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2

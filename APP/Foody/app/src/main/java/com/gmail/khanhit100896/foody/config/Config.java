@@ -2,11 +2,18 @@ package com.gmail.khanhit100896.foody.config;
 
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 public class Config {
     private static final Config config = new Config();
 
     // [START declare_auth]
     private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener authStateListener;
     // [END declare_auth]
 
     private String ip;
@@ -23,14 +30,29 @@ public class Config {
     private String pathGetAllFoodBuffet;
     private String pathGetAllFoodChay;
     private String pathGetAllFoodAV;
+    private String pathGetAllComment;
+    private String pathInsertComment;
+    private String pathUpdateBranch;
+    private String pathUpdateTouchBranch;
+    private String pathUpdateFood;
+    private String pathUpdateTouchFood;
+    private String pathUpdateRestaurant;
+    private String pathUpdateTouchRestaurant;
+    private String pathDeleteHistoryRestaurant;
+    private String pathDeleteHistoryBranch;
+    private String pathDeleteHistoryFood;
+    private String pathDeleteLikeRestaurant;
+    private String pathDeleteLikeBranch;
+    private String pathDeleteLikeFood;
 
     private void setIp() {
-        this.ip = "http://192.168.1.5";
+        this.ip = "http://192.168.1.6";
     }
 
     private Config() {
         // [START initialize_auth]
         this.setmAuth(FirebaseAuth.getInstance());
+        this.setAuthStateListener(this.authStateListener);
         // [END initialize_auth]
 
         this.setIp();
@@ -46,6 +68,20 @@ public class Config {
         this.setPathGetAllFoodBuffet(this.getIp().concat("/foody-admin/src/libs/getAllBuffetFood.php"));
         this.setPathGetAllFoodChay(this.getIp().concat("/foody-admin/src/libs/getAllChayFood.php"));
         this.setPathGetAllFoodAV(this.getIp().concat("/foody-admin/src/libs/getAllAVFood.php"));
+        this.setPathGetAllComment(this.getIp().concat("/foody-admin/src/libs/getAllComment.php"));
+        this.setPathInsertComment(this.getIp().concat("/foody-admin/src/libs/addComment.php"));
+        this.setPathUpdateBranch(this.getIp().concat("/foody-admin/src/libs/updateBranch.php"));
+        this.setPathUpdateFood(this.getIp().concat("/foody-admin/src/libs/updateFood.php"));
+        this.setPathUpdateRestaurant(this.getIp().concat("/foody-admin/src/libs/updateRestaurant.php"));
+        this.setPathUpdateTouchRestaurant(this.getIp().concat("/foody-admin/src/libs/updateTouchRestaurant.php"));
+        this.setPathUpdateTouchFood(this.getIp().concat("/foody-admin/src/libs/updateTouchFood.php"));
+        this.setPathUpdateTouchBranch(this.getIp().concat("/foody-admin/src/libs/updateTouchBranch.php"));
+        this.setPathDeleteHistoryRestaurant(this.getIp().concat("/foody-admin/src/libs/deleteHistoryRestaurant.php"));
+        this.setPathDeleteHistoryBranch(this.getIp().concat("/foody-admin/src/libs/deleteHistoryBranch.php"));
+        this.setPathDeleteHistoryFood(this.getIp().concat("/foody-admin/src/libs/deleteHistoryFood.php"));
+        this.setPathDeleteLikeRestaurant(this.getIp().concat("/foody-admin/src/libs/deleteLikeRestaurant.php"));
+        this.setPathDeleteLikeBranch(this.getIp().concat("/foody-admin/src/libs/deleteLikeBranch.php"));
+        this.setPathDeleteLikeFood(this.getIp().concat("/foody-admin/src/libs/deleteLikeFood.php"));
     }
 
     public void signOut() {
@@ -54,8 +90,37 @@ public class Config {
         // Google sign out
     }
 
+    public String getCurrentTime(){
+        return new SimpleDateFormat("HH:mm").format(Calendar.getInstance().getTime());
+    }
+
+    public String getCurrentDate(){
+        //return String.valueOf(new Date(System.currentTimeMillis()));
+        String currentDate;
+        int hours = Calendar.getInstance().getTime().getHours();
+        SimpleDateFormat formatter;
+        Date date = new Date();
+        if(hours > 12){
+            formatter = new SimpleDateFormat("dd/MM/yyyy - HH:mm");
+            currentDate = formatter.format(date) + " PM";
+        }
+        else {
+            formatter = new SimpleDateFormat("dd/MM/yyyy - HH:mm");
+            currentDate = formatter.format(date) + " AM";
+        }
+        return currentDate;
+    }
+
     public FirebaseAuth getmAuth() {
         return mAuth;
+    }
+
+    public FirebaseAuth.AuthStateListener getAuthStateListener() {
+        return authStateListener;
+    }
+
+    public void setAuthStateListener(FirebaseAuth.AuthStateListener authStateListener) {
+        this.authStateListener = authStateListener;
     }
 
     private void setmAuth(FirebaseAuth mAuth) {
@@ -164,5 +229,117 @@ public class Config {
 
     private void setPathGetAllFoodAV(String pathGetAllFoodAV) {
         this.pathGetAllFoodAV = pathGetAllFoodAV;
+    }
+
+    public String getPathGetAllComment() {
+        return pathGetAllComment;
+    }
+
+    public void setPathGetAllComment(String pathGetAllComment) {
+        this.pathGetAllComment = pathGetAllComment;
+    }
+
+    public String getPathInsertComment() {
+        return pathInsertComment;
+    }
+
+    public void setPathInsertComment(String pathInsertComment) {
+        this.pathInsertComment = pathInsertComment;
+    }
+
+    public String getPathUpdateBranch() {
+        return pathUpdateBranch;
+    }
+
+    public void setPathUpdateBranch(String pathUpdateBranch) {
+        this.pathUpdateBranch = pathUpdateBranch;
+    }
+
+    public String getPathUpdateFood() {
+        return pathUpdateFood;
+    }
+
+    public void setPathUpdateFood(String pathUpdateFood) {
+        this.pathUpdateFood = pathUpdateFood;
+    }
+
+    public String getPathUpdateRestaurant() {
+        return pathUpdateRestaurant;
+    }
+
+    public void setPathUpdateRestaurant(String pathUpdateRestaurant) {
+        this.pathUpdateRestaurant = pathUpdateRestaurant;
+    }
+
+    public String getPathUpdateTouchRestaurant() {
+        return pathUpdateTouchRestaurant;
+    }
+
+    public void setPathUpdateTouchRestaurant(String pathUpdateTouchRestaurant) {
+        this.pathUpdateTouchRestaurant = pathUpdateTouchRestaurant;
+    }
+
+    public String getPathUpdateTouchFood() {
+        return pathUpdateTouchFood;
+    }
+
+    public void setPathUpdateTouchFood(String pathUpdateTouchFood) {
+        this.pathUpdateTouchFood = pathUpdateTouchFood;
+    }
+
+    public String getPathUpdateTouchBranch() {
+        return pathUpdateTouchBranch;
+    }
+
+    public void setPathUpdateTouchBranch(String pathUpdateTouchBranch) {
+        this.pathUpdateTouchBranch = pathUpdateTouchBranch;
+    }
+
+    public String getPathDeleteHistoryRestaurant() {
+        return pathDeleteHistoryRestaurant;
+    }
+
+    public void setPathDeleteHistoryRestaurant(String pathDeleteHistoryRestaurant) {
+        this.pathDeleteHistoryRestaurant = pathDeleteHistoryRestaurant;
+    }
+
+    public String getPathDeleteHistoryBranch() {
+        return pathDeleteHistoryBranch;
+    }
+
+    public void setPathDeleteHistoryBranch(String pathDeleteHistoryBranch) {
+        this.pathDeleteHistoryBranch = pathDeleteHistoryBranch;
+    }
+
+    public String getPathDeleteHistoryFood() {
+        return pathDeleteHistoryFood;
+    }
+
+    public void setPathDeleteHistoryFood(String pathDeleteHistoryFood) {
+        this.pathDeleteHistoryFood = pathDeleteHistoryFood;
+    }
+
+    public String getPathDeleteLikeRestaurant() {
+        return pathDeleteLikeRestaurant;
+    }
+
+    public void setPathDeleteLikeRestaurant(String pathDeleteLikeRestaurant) {
+        this.pathDeleteLikeRestaurant = pathDeleteLikeRestaurant;
+    }
+
+    public String getPathDeleteLikeBranch() {
+        return pathDeleteLikeBranch;
+    }
+
+    public void setPathDeleteLikeBranch(String pathDeleteLikeBranch) {
+        this.pathDeleteLikeBranch = pathDeleteLikeBranch;
+    }
+
+    public String getPathDeleteLikeFood() {
+        return pathDeleteLikeFood;
+    }
+
+    public void setPathDeleteLikeFood(String pathDeleteLikeFood) {
+        this.pathDeleteLikeFood = pathDeleteLikeFood;
     }
 }
